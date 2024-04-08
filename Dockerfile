@@ -1,19 +1,19 @@
 # Dockerfile for language-identification-application-ui
 
-# Use an official Node.js runtime as a parent image
+# Stage 1: Build the React application
 FROM node:14-alpine AS ui-builder
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY language-identification-application-ui/package*.json ./
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
 # Copy the remaining application code to the working directory
-COPY language-identification-application-ui/ ./
+COPY . .
 
 # Build the application
 RUN npm run build
@@ -29,3 +29,4 @@ EXPOSE 80
 
 # Start NGINX to serve the application
 CMD ["nginx", "-g", "daemon off;"]
+

@@ -34,7 +34,7 @@ const FormComponent = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/predict', { text });
+            const response = await axios.post('http://127.0.0.1:5000/predict', { text });
             setPrediction(response.data.prediction);
         } catch (error) {
             console.error('Error:', error);
